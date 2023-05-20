@@ -1,5 +1,56 @@
+import { getEarthquakeData } from "./earthquake.mjs";
+import EarthquakeMap from "./EarthquakeMap.mjs";
+
+var quakeData = [];
+const mapElement = document.getElementById("mapid");
+const map = new EarthquakeMap(mapElement);
+map.init();
+
+
+//const x = document.getElementById("demo");
+var localeButton = document.getElementById("inputLocation")
+localeButton.addEventListener("click", async function(){
+  quakeData = await getEarthquakeData();
+  map.populateLocations(quakeData);
+  console.log(quakeData);
+});
+localeButton.addEventListener("keypress", function(event){
+  if (event.key === "Enter") {
+    console.log("Enter pressed");
+    localeButton.click();
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import EarthquakeMap from "./EarthquakeMap.mjs";
- import {getLatLong, getEarthquakeData} from "./earthquake.mjs";
+// import {getLatLong, getEarthquakeData} from "./earthquake.mjs";
 
 // const mapElement = document.querySelector("#map");
 // const mapBackground = new EarthquakeMap(mapElement);
@@ -18,7 +69,7 @@
 //     mapBackground.fitMapBounds();
 //   });
 
-  import { EarthquakeMap } from "./EarthquakeMap.mjs";
+/*   import { EarthquakeMap } from "./EarthquakeMap.mjs";
 
 const map = new EarthquakeMap("map");
 
@@ -44,7 +95,7 @@ async function init() {
 
 map.init().then(() => {
   init();
-});
+}); */
 
 // Get earthquake locations
 //const earthquakeLocations = await getEarthquakeLocations();
