@@ -3,9 +3,12 @@ export default class EarthquakeMap {
     this.containerId = containerId;
     this.map = null;
     this.markers = [];
+    this.initialLat = 37.8;
+    this.initialLong = -96;
+    this.initialZoom = 3;
   }
   init() {
-    this.map = L.map(this.containerId).setView([37.8, -96], 4);
+    this.map = L.map(this.containerId).setView([this.initialLat, this.initialLong], this.initialZoom);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -16,73 +19,32 @@ export default class EarthquakeMap {
   }
 
   populateLocations(locations) {
-
-       /* function showPosition(position) {
-        lat = position.coords.latitude;
-        lng = position.coords.longitude;
-        x.innerHTML = "Latitude: " + lat + 
-        "<br>Longitude: " + lng;*/
-        
-        //locations.push({lat, lng});
-        const bounds = L.latLngBounds(locations.map((location) => [location.lat, location.lng]));
-        this.map.fitBounds(bounds, {maxZoom: 8});
+    const bounds = L.latLngBounds(locations.map((location) => [location.lat, location.lng]));
+    this.map.fitBounds(bounds, {maxZoom: 8});
   
-        locations.forEach((location) => {
-          L.marker([location.lat, location.lng])
-            .addTo(this.map)
-            .bindPopup(location.popupData);
-        });
-  }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*export class EarthquakeMap {
-  constructor(containerId) {
-    this.containerId = containerId;
-    this.map = null;
-    this.markers = [];
-  }
-
-  init() {
-    return new Promise((resolve, reject) => {
-      this.map = L.map(this.containerId, {
-        preferCanvas: true,
-      }).setView([0, 0], 1);
-      L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-          attribution:
-            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 18,
-          tileSize: 512,
-          zoomOffset: -1,
-        }
-      ).addTo(this.map);
-      resolve();
+    locations.forEach((location) => {
+      L.marker([location.lat, location.lng])
+        .addTo(this.map)
+        .bindPopup(location.popupData);
     });
   }
-
-  addMarker(lat, lng, popupText) {
-    const marker = L.marker([lat, lng]).addTo(this.map).bindPopup(popupText);
-    this.markers.push(marker);
+  clearMap() {
+    this.map.eachLayer(function (layer) {
+      if (layer instanceof L.Marker && layer.getPopup()) {
+        this.map.removeLayer(layer);
+      }
+    }, this);
+    this.spanToLocation(null, null, null, true);
   }
 
-  fitMapBounds() {
-    const group = new L.featureGroup(this.markers);
-    this.map.fitBounds(group.getBounds());
+  spanToLocation(lat, lng, zoom, clear) {
+    if (clear){
+      this.map.flyTo([this.initialLat, this.initialLong], this.initialZoom, {duration: this.duration});
+    } else {
+      this.map.flyTo([lat, lng], zoom, {duration: this.duration});
+    }
+    
   }
-}*/
+}
+
 

@@ -12,20 +12,26 @@
   <body>
     <h1>Earthquake Tracker</h1>
     <label for="location">Location (City, State)</label><br>
-    <input type="text" id="location" value="san diego, ca">
+    <input type="text" id="location" list="searchOptions" value="san diego, ca">
+    <dataList id="searchOptions"></dataList>
     <button id="inputLocation">Go!</button>
+
+    <div id="content-container">
+    <div id="map-container">
+      <div id="mapid"></div>
+    </div>
+      <div id="loader">
+        <div class="loader-background">
+        <img id="loader-background" src="./images/background.png" alt="Loader Background" />
+        </div>
+        <div class="loader-icon">
+        <img id="loader-house" src="./images/house.png" alt="Loader" class="shake-animation"/>
+        </div>
+        <div id="status-update">Searching for earthquakes within 100 miles of location</div>
+      </div>
+      </div>
+      
+      
     
-    <div id="mapid"></div>
-    Need to fix:
-    Go on Enter Press<br>
-    add option to search for miles from location<br>
-    clear map on new search<br>
-    make map bigger<br>
-    error handling<br>
-    polish!<br>
-    investigate "bounds are not valid" - maybe related to lack of quakes returned<br>
-    Add a loading bar
-    
-    </script>
   </body>
 </html>
