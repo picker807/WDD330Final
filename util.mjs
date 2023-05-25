@@ -1,7 +1,9 @@
 export function saveSearchTerm() {
   const term = document.getElementById("location").value;
+  if (!term) {
+    displayError("Enter a location to search");
+  }
     const searchHistory = getSearchHistory() || [];
-
     if (!searchHistory.includes(term)){
       searchHistory.unshift(term);
       localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
@@ -15,7 +17,6 @@ function getSearchHistory() {
   }
 
 export function loadSearchHistory() {
-    //const term = document.getElementById("location").value;
     var searchHistory = getSearchHistory();
     if (searchHistory && searchHistory.length > 0) {
       searchOptions.innerHTML = '';
@@ -27,20 +28,29 @@ export function loadSearchHistory() {
     }
   }
 
-  export function updateStatus(distance) {
+  export function updateStatus(a) {
     const statusElem = document.getElementById("status-update");
-    statusElem.innerHTML = `Searching for earthquakes within <span id="status-number">${distance}</span> miles of location`
+    statusElem.innerHTML = `Searching for earthquakes within <span id="status-number">${a}</span> miles of location`
   }
 
-  export function toggleStatusVisible() {
-    //const statusElem = document.getElementById("status-update");
+  export function toggleStatusVisible(show) {
     const loader = document. getElementById("loader");
-  
-    if (window.getComputedStyle(loader).display === "none") {
-      //statusElem.style.display = "block";
+    if (show) {
       loader.style.display = "grid";
     } else {
-      //statusElem.style.display = "none";
       loader.style.display = "none";
     }
   }
+
+  export function displayError(message) {
+    const errorBar = document.getElementById("error-bar");
+    const errorMessage = document.getElementById("error-message");
+  
+    errorMessage.textContent = message;
+    errorBar.style.display = "block";
+  
+    setTimeout(() => {
+      errorBar.style.display = "none";
+    }, 5000);
+  }
+  

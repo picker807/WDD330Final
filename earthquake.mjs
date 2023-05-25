@@ -1,28 +1,23 @@
-import {updateStatus, toggleStatusVisible} from "./util.mjs";
+import {updateStatus, toggleStatusVisible, displayError} from "./util.mjs";
 
 
 export async function getLatLong(location) {
-	//put API keys in environment files
-	
 	const key = "trNGcxROHe9nujAzrQhNqSefeeGUHxys";
 	const response = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${key}&location=${location}`)
 	const coordinateData = await response.json();
-	console.log(coordinateData);
 	const latitude = coordinateData.results[0].locations[0].latLng.lat;
 	const longitude = coordinateData.results[0].locations[0].latLng.lng;
-	console.log("1 ", latitude, longitude);
-	return {"lat": latitude, "lng": longitude};
 	
+	return {"lat": latitude, "lng": longitude};
   }
 
   
 export async function getEarthquakeData(latitude, longitude){
 	var distance = 100;
-	//let {latitude, longitude} = await getLatLong();
-	//console.log(latitude, longitude);
 	var result = {data: []};
-	toggleStatusVisible();
+	toggleStatusVisible(true);
 	while (result.data.length === 0){
+		
 		updateStatus(distance);
 		const url = `https://everyearthquake.p.rapidapi.com/earthquakes?start=1&count=100&type=earthquake&latitude=${latitude}&longitude=${longitude}&radius=${distance}&units=miles&magnitude=3&intensity=1`;
 		const options = {
@@ -35,26 +30,35 @@ export async function getEarthquakeData(latitude, longitude){
 			'X-RapidAPI-Host': 'everyearthquake.p.rapidapi.com'
 	  	}
 		};
-
-		const response = await fetch(url, options);
-		const responseData = await response.json();
-  		result.data = responseData.data;
-		distance += 100;
-		console.log(distance, result.data);
+		try{
+			const response = await fetch(url, options);
+			if (!response.ok) {
+				throw new Error(`${response.status}`)
+			}
+			const responseData = await response.json();
+		
+  			result.data = responseData.data;
+			distance += 100;
+		} catch (e) {
+  			displayError("No Earthquakes here. Try another location.");
+			toggleStatusVisible(false);
+			break;
+		}
 	}
-	toggleStatusVisible();
+	toggleStatusVisible(false);
 	const quakeData = getQuakeInfo(result.data);
 	
 	return quakeData;
 	}
 
 function getQuakeInfo(result) {
+	console.log(result);
 	const quakes = [];
 	result.forEach(function(quake) {
 		const data = quakeTemplate(quake);
 		quakes.push(data);
-	
 	});
+	console.log(quakes);
 	return quakes;
 }
 
@@ -74,7 +78,7 @@ function quakeTemplate(quake) {
 	} else if (quake.magnitude < 4.0) {
 		quakeClass = "custom-marker-low";
 	}
-	
+
 	return {
 		level: quakeClass,
 		lat: quake.latitude,

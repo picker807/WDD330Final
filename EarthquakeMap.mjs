@@ -27,7 +27,6 @@ export default class EarthquakeMap {
         icon: L.divIcon({
           className: location.level,
           iconSize: [20, 20]
-
         })
       })
         .addTo(this.map)

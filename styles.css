@@ -33,10 +33,10 @@ text-align: center;
   top:-30px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 5.5vw; /* Adjust the font size as desired */
-  font-weight: bold; /* Add font weight for a bold style */
-  font-style: italic; /* Add font style for an italic style */
-  color: #9b3917; /* Set the color using a hexadecimal value or color name */
+  font-size: 5.5vw; 
+  font-weight: bold;
+  font-style: italic; 
+  color: #9b3917; 
   padding-top: 50px;
 }
 
@@ -48,7 +48,7 @@ text-align: center;
 
 }
 .mirror-image {
-  transform: scaleX(-1); /* Flip the image horizontally */
+  transform: scaleX(-1); 
   margin-right: 10px;
 }
 
@@ -93,13 +93,13 @@ button:hover {
 #content-container {
   position: relative;
   width: 100%;
-  height: 100%; /* Adjust the height as needed */
+  height: 100%; 
   min-height: calc(100% - 5vh);
 }
 
 #map-container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   transform-style: preserve-3d;
   border: 10px solid #17379a; 
   height: 60%;
@@ -130,14 +130,9 @@ button:hover {
 }
 
 .loader-background {
-  /*position: relative;*/
   width: 20vw;
   max-width: 400px;
   grid-area: 1 / 1;
-
-
-  /*margin: 0 auto;
-  bottom: calc(-5vh - 5vw); /* Adjust the value to move the background down */
 }
 
 .loader-background img {
@@ -147,13 +142,9 @@ button:hover {
 }
 
 .loader-icon {
-  /*position: relative;*/
   width: 20vw;
   max-width: 400px;
   grid-area: 1 / 1;
-
-  /*margin: 0 auto;
-  top: calc(-5vh + -5vw); /* Adjust the value to move the house icon up */
 }
 
 .loader-icon img {
@@ -182,13 +173,11 @@ button:hover {
 }
 
 #status-number {
-  /* CSS properties for the number */
   font-weight: bold;
   color: #17379a;
   font-size: 2.5vh;
   margin-left: 10px;
   margin-right: 10px;
-  /* Other styles for the number */
   animation: shake 0.5s infinite;
 }
 
@@ -206,30 +195,30 @@ button:hover {
 
 /* Custom CSS for map markers */
 .custom-marker-low {
-  background-color: #179b7a; /* Set the marker background color */
-  border-radius: 50%; /* Make the marker shape circular */
-  width: 20px; /* Set the marker width */
-  height: 20px; /* Set the marker height */
-  border: 2px solid #ffffff; /* Set the marker border */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a shadow to the marker */
+  background-color: #179b7a; 
+  border-radius: 50%; 
+  width: 20px; 
+  height: 20px; 
+  border: 2px solid #ffffff; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
 }
 
 .custom-marker-med {
-  background-color: #d0cd20; /* Set the marker background color */
-  border-radius: 50%; /* Make the marker shape circular */
-  width: 20px; /* Set the marker width */
-  height: 20px; /* Set the marker height */
-  border: 2px solid #ffffff; /* Set the marker border */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a shadow to the marker */
+  background-color: #d0cd20; 
+  border-radius: 50%; 
+  width: 20px; 
+  height: 20px; 
+  border: 2px solid #ffffff; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
 }
 
 .custom-marker-high {
-  background-color: #9b3917; /* Set the marker background color */
-  border-radius: 50%; /* Make the marker shape circular */
-  width: 20px; /* Set the marker width */
-  height: 20px; /* Set the marker height */
-  border: 2px solid #ffffff; /* Set the marker border */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a shadow to the marker */
+  background-color: #9b3917; 
+  border-radius: 50%; 
+  width: 20px; 
+  height: 20px; 
+  border: 2px solid #ffffff; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
 }
 
 /* Custom CSS for map popups */
@@ -257,7 +246,21 @@ button:hover {
   text-decoration: underline;
 }
 
+/*#error-bar {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #9b3917;
+  color: white;
+  padding: 10px;
+  z-index: 9999;
+}
 
+#error-message {
+  font-weight: bold;
+}*/
 
 #footer {
   text-align: center;
