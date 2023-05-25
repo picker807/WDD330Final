@@ -52,13 +52,12 @@ export async function getEarthquakeData(latitude, longitude){
 	}
 
 function getQuakeInfo(result) {
-	console.log(result);
 	const quakes = [];
 	result.forEach(function(quake) {
 		const data = quakeTemplate(quake);
 		quakes.push(data);
 	});
-	console.log(quakes);
+
 	return quakes;
 }
 

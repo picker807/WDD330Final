@@ -246,7 +246,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/*#error-bar {
+#error-bar {
   display: none;
   position: fixed;
   top: 50%;
@@ -260,7 +260,7 @@ button:hover {
 
 #error-message {
   font-weight: bold;
-}*/
+}
 
 #footer {
   text-align: center;
