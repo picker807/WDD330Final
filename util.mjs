@@ -29,7 +29,7 @@ export function loadSearchHistory() {
 
   export function updateStatus(distance) {
     const statusElem = document.getElementById("status-update");
-    statusElem.innerHTML = `Searching for earthquakes within ${distance} miles of location`
+    statusElem.innerHTML = `Searching for earthquakes within <span id="status-number">${distance}</span> miles of location`
   }
 
   export function toggleStatusVisible() {

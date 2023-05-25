@@ -59,14 +59,24 @@ function getQuakeInfo(result) {
 }
 
 function quakeTemplate(quake) {
+	var quakeClass = "custom-marker-med";
 	const {date, time} = getModifiedDate(quake.date);
-	const popupData = `<strong>Location:</strong> ${quake.location}<br>
+	const popupData = `
+	<strong>Location:</strong> ${quake.location}<br>
 	<strong>Date:</strong> ${date}<br>
 	<strong>Time:</strong> ${time} UTC<br>
 	<strong>Magnitude:</strong> ${quake.magnitude}<br>
 	<strong>Depth:</strong> ${quake.depth} km<br>
-	<a href="${quake.url}" target="_blank">More Info</a>`
+	<a href="${quake.url}" target="_blank">More Info</a>
+	`
+	if (quake.magnitude > 6.0) {
+		quakeClass = "custom-marker-high";
+	} else if (quake.magnitude < 4.0) {
+		quakeClass = "custom-marker-low";
+	}
+	
 	return {
+		level: quakeClass,
 		lat: quake.latitude,
 		lng: quake.longitude,
 		popupData: popupData

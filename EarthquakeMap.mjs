@@ -23,9 +23,15 @@ export default class EarthquakeMap {
     this.map.fitBounds(bounds, {maxZoom: 8});
   
     locations.forEach((location) => {
-      L.marker([location.lat, location.lng])
+      L.marker([location.lat, location.lng], {
+        icon: L.divIcon({
+          className: location.level,
+          iconSize: [20, 20]
+
+        })
+      })
         .addTo(this.map)
-        .bindPopup(location.popupData);
+        .bindPopup(location.popupData, {className: "leaflet-popup"});
     });
   }
   clearMap() {

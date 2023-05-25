@@ -10,11 +10,20 @@
   
   </head>
   <body>
-    <h1>Earthquake Tracker</h1>
-    <label for="location">Location (City, State)</label><br>
+    <h1>
+      <div class="header-container">
+      <span class="header-text">Earthquake Map</span>
+      <img src="./images/richter.png" class="header-image" alt="Header Image"/>
+      <img src="./images/richter.png" class="mirror-image header-image" alt="Mirror Image"/>
+      </div>
+    </h1>
+
+    <div class="input-container">
+    <label for="location">Location</label>
     <input type="text" id="location" list="searchOptions" value="san diego, ca">
     <dataList id="searchOptions"></dataList>
     <button id="inputLocation">Go!</button>
+    </div>
 
     <div id="content-container">
     <div id="map-container">
@@ -29,7 +38,9 @@
         </div>
         <div id="status-update">Searching for earthquakes within 100 miles of location</div>
       </div>
+      <footer id="footer">Earthquake Map created by Aaron Picker 2023</footer>
       </div>
+      
       
       
     
