@@ -33,13 +33,16 @@ export default class EarthquakeMap {
         .bindPopup(location.popupData, {className: "leaflet-popup"});
     });
   }
-  clearMap() {
+  clearMap(isButtonClick) {
     this.map.eachLayer(function (layer) {
       if (layer instanceof L.Marker && layer.getPopup()) {
         this.map.removeLayer(layer);
       }
     }, this);
-    this.spanToLocation(null, null, null, true);
+  
+    if (isButtonClick) {
+      this.spanToLocation(null, null, null, true); // Zoom to top level on button click
+    }
   }
 
   spanToLocation(lat, lng, zoom, clear) {
