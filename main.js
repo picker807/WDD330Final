@@ -37,16 +37,10 @@ async function handleLocationSearch() {
   
   const location = saveSearchTerm();
   loadSearchHistory();
-  try {
+  
     let coords = await getLatLong(location);
-    if (coords) {
+    
       map.spanToLocation(coords.lat, coords.lng, 5, false);
       quakeData = await getEarthquakeData(coords.lat, coords.lng);
       map.populateLocations(quakeData);
-    } else {
-      displayError("Failed to fetch coordinates for the location.");
-    }
-  } catch (error) {
-    displayError("Failed to fetch coordinates for the location.");
-  }
 }

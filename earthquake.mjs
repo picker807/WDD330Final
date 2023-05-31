@@ -1,6 +1,5 @@
 import {updateStatus, toggleStatusVisible, displayError} from "./util.mjs";
 
-
 export async function getLatLong(location) {
 	const key = "trNGcxROHe9nujAzrQhNqSefeeGUHxys";
 	const response = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${key}&location=${location}`)
@@ -11,7 +10,6 @@ export async function getLatLong(location) {
 	return {"lat": latitude, "lng": longitude};
   }
 
-  
 export async function getEarthquakeData(latitude, longitude){
 	var distance = 100;
 	var result = {data: []};
