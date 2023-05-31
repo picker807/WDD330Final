@@ -10,6 +10,7 @@ const map = new EarthquakeMap(mapElement);
 map.init();
 
 // Event Listeners
+var locationInput = document.getElementById("location");
 var localeButton = document.getElementById("inputLocation");
 localeButton.addEventListener("click", function() {
   map.clearMap(true);
@@ -17,7 +18,7 @@ localeButton.addEventListener("click", function() {
 });
 
 document.addEventListener("keypress", function (event) {
-  if (event.key === "Enter" && event.target !== localeButton) {
+  if (event.key === "Enter" && event.target == locationInput) {
     event.preventDefault();
     localeButton.click();
   }
