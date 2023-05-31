@@ -229,13 +229,12 @@ button:hover {
 
 /* Custom CSS for map popups */
 .leaflet-popup {
-  background-color: #fff;
+  background-color: #17379a;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   padding: 10px;
   border-radius: 5px;
   color: #333;
   width: 200px;
-
 }
 
 .leaflet-popup strong {
@@ -250,6 +249,10 @@ button:hover {
 
 .leaflet-popup a:hover {
   text-decoration: underline;
+}
+
+.leaflet-popup-close-button {
+  margin: 10px;
 }
 
 #error-bar {
