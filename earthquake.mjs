@@ -1,7 +1,7 @@
 import {updateStatus, toggleStatusVisible, displayError} from "./util.mjs";
 
 export async function getLatLong(location) {
-	const key = '${{ secret.GEO_KEY }}';
+	const key = "trNGcxROHe9nujAzrQhNqSefeeGUHxys";
 	const response = await fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${key}&location=${location}`)
 	const coordinateData = await response.json();
 	const latitude = coordinateData.results[0].locations[0].latLng.lat;
@@ -24,7 +24,7 @@ export async function getEarthquakeData(latitude, longitude){
 			'Access-Control-Allow-Origin': '*',
 			'Access-Control-Allow-Methods': 'GET',
 			'Access-Control-Allow-Headers': 'Content-Type',
-			'X-RapidAPI-Key': '${{ secret.QUAKE_KEY }}',
+			'X-RapidAPI-Key': '20cc1488bbmsha50fc892c0c915bp1e101cjsn47c37b113105',
 			'X-RapidAPI-Host': 'everyearthquake.p.rapidapi.com'
 	  	}
 		};
